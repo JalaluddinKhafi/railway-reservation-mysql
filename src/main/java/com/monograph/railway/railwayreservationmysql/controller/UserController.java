@@ -20,24 +20,51 @@ public class UserController {
     public String contcat() {
         return "contact";
     }
+
     @GetMapping("/service")
     public String service() {
         return "service";
     }
+
     @GetMapping("/train")
     public String searchTrain() {
         return "train";
     }
+
     @GetMapping("/register")
     public String register() {
         return "register";
     }
+
     @GetMapping("/login")
     public String login() {
         return "login";
     }
-    @GetMapping("/station")
-    public String station() {
-        return "station";
+
+    @GetMapping("/user-home")
+    public String userHome() {
+        return "user-home";
     }
+
+    @GetMapping("/schedule")
+    public String schedule() {
+        return "schedule";
+    }
+
+    @GetMapping("/view-all-stations")
+    public String station() {
+        return "view-all-stations";
+    }
+
+    @GetMapping("/view-all-tickets")
+    public String allTickets() {
+        return "view-all-tickets";
+    }
+
+    @GetMapping("/view-all-trains")
+    public String allTrains() {
+        return "view-all-trains";
+    }
+
+
 }
