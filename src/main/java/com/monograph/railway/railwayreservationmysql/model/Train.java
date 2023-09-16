@@ -1,24 +1,39 @@
 package com.monograph.railway.railwayreservationmysql.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import jakarta.persistence.*;
+import lombok.*;
 
-@Entity
-@Table
-@Getter
-@Setter
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @ToString
-@RequiredArgsConstructor
+@Entity
+@Table(name = "trains")
 public class Train {
     @Id
-    private long id;
-    private String name;
-    private long number_of_seat;
-    private String destination;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "train_id")
+    private Long id;
 
+    @Column(name = "train_name")
+    private String name;
+
+    @Column(name = "train_total_seats")
+    private Integer totalSeats;
+
+    @OneToOne(
+            cascade = CascadeType.ALL,
+            mappedBy = "train")
+    private TrainStatus trainStatus;
+
+    @ManyToOne
+    @JoinColumn(name = "route_id")
+    private Route route;
+
+    // Getters and setters
 }
+
+
