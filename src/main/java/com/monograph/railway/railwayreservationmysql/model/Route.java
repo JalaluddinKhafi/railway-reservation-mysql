@@ -17,16 +17,16 @@ public class Route {
     @Column(name = "r_id")
     private Long id;
 
-    @Column(name = "r_source")
+    @Column(name = "r_source",nullable = false)
     private String source;
 
-    @Column(name = "r_destination")
+    @Column(name = "r_destination",nullable = false)
     private String destination;
 
     @OneToMany(
             cascade = CascadeType.ALL,
             mappedBy = "route")
-    private List<Train> trains;
+    private List<TrainStatus> trainStatuse;
 
     // Getters and setters
 }

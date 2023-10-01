@@ -18,10 +18,10 @@ public class Train {
     @Column(name = "train_id")
     private Long id;
 
-    @Column(name = "train_name")
+    @Column(name = "train_name",nullable = false)
     private String name;
 
-    @Column(name = "train_total_seats")
+    @Column(name = "train_total_seats", nullable = false)
     private Integer totalSeats;
 
     @OneToOne(
@@ -29,9 +29,6 @@ public class Train {
             mappedBy = "train")
     private TrainStatus trainStatus;
 
-    @ManyToOne
-    @JoinColumn(name = "route_id")
-    private Route route;
 
     // Getters and setters
 }

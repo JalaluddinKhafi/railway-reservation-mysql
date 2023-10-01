@@ -34,5 +34,10 @@ public class TrainStatusServiceImpl implements TrainStatusService {
     public void deleteTrainStatus(Long trainId) {
         trainStatusRepository.deleteById(trainId);
     }
+
+    @Override
+    public List<Object[]> getTrainDetails() {
+        return trainStatusRepository.getTrainDetails();
+    }
 }
 

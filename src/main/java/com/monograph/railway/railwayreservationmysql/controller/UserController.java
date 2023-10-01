@@ -7,6 +7,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 @Controller
 public class UserController {
@@ -40,13 +44,14 @@ public class UserController {
         return "train";
     }
 
-    @GetMapping("/register")
+    @GetMapping("/createAccount")
     public String showRegistrationForm(Model model) {
         model.addAttribute("user", new User());
-        return "register";
+        return "createAccount";
     }
-    @PostMapping("/saveUser")
-    public String registerUser(@ModelAttribute("user") User user) {
+    @PostMapping("/register")
+    public String registerUser(@ModelAttribute("user") User user)
+    {
         userServicImpl.saveUser(user);
         return "redirect:/login";
     }

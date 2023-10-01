@@ -18,25 +18,20 @@ public class User {
     @Column(name = "u_id")
     private Long id;
 
-    @Column(name = "u_Fname")
+    @Column(name = "u_Fname",nullable = false)
     private String firstName;
 
     @Column(name = "u_Lname")
     private String lastName;
 
-    @Column(name = "u_email")
+    @Column(name = "u_email",unique = true)
     private String email;
 
-    @Column(name = "u_username")
+    @Column(name = "u_username",unique = true,nullable = false)
     private String username;
 
-    @Column(name = "u_password")
+    @Column(name = "u_password", nullable = false)
     private String password;
-
-    @Column(name = "u_picture")
-    @Lob
-    private byte[] image;
-
     @OneToMany(
             cascade = CascadeType.ALL,
             mappedBy = "user")

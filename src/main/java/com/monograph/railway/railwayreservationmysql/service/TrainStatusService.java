@@ -13,5 +13,6 @@ public interface TrainStatusService {
     TrainStatus getTrainStatusByTrainId(Long trainId);
     List<TrainStatus> getAllTrainStatuses();
     void deleteTrainStatus(Long trainId);
+    public List<Object[]> getTrainDetails();
 }
 

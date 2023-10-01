@@ -31,5 +31,11 @@ public class TrainStatus {
     @Column(name = "st_departure_time")
     private LocalDateTime departureTime;
 
+    @ManyToOne
+    @JoinColumn(name = "route_id")
+    private Route route;
+
+
+
     // Getters and setters
 }

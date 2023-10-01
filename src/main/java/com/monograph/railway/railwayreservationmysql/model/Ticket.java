@@ -18,13 +18,13 @@ public class Ticket {
     @Column(name = "t_id")
     private Long id;
 
-    @Column(name = "r_p_name")
+    @Column(name = "r_p_name",nullable = false)
     private String passengerName;
 
     @Column(name = "r_p_email")
     private String passengerEmail;
 
-    @Column(name = "r_p_seat_no")
+    @Column(name = "r_p_seat_no",nullable = false)
     private String passengerSeatNo;
 
     @ManyToOne(cascade = CascadeType.ALL)

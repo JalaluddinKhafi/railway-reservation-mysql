@@ -17,22 +17,22 @@ public class Passenger {
     @Column(name = "p_id")
     private Long id;
 
-    @Column(name = "p_Fname")
+    @Column(name = "p_Fname",nullable = false)
     private String firstName;
 
     @Column(name = "p_Lname")
     private String lastName;
 
-    @Column(name = "p_email")
+    @Column(name = "p_email",nullable = false)
     private String email;
 
-    @Column(name = "p_phone")
+    @Column(name = "p_phone",nullable = false)
     private String phone;
 
     @Column(name = "p_gender")
     private String gender;
 
-    @Column(name = "p_seat_no")
+    @Column(name = "p_seat_no",nullable = false)
     private String seatNo;
 
     @OneToMany(cascade = CascadeType.ALL,

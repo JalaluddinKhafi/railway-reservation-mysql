@@ -1,36 +1,54 @@
 <!DOCTYPE html>
-<!-- Coding By CodingNepal - www.codingnepalweb.com -->
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Glassmorphism Login Form | CodingNepal</title>
-    <link rel="stylesheet" th:href="@{/css/loginStyle.css}">
-</head>
-<body>
-<div class="wrapper">
-    <form action="#">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Animated Login From</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
+    <link rel="stylesheet" th:href="@{/css/login.css}" />
+  </head>
+  <body>
+    <div class="login_form_container">
+      <div class="login_form">
         <h2>Login</h2>
-        <div class="input-field">
-            <input type="text" required>
-            <label>Enter your email</label>
+        <div class="input_group">
+          <i class="fa fa-user"></i>
+          <input
+            type="text"
+            placeholder="Username"
+            class="input_text"
+            autocomplete="off"
+          />
         </div>
-        <div class="input-field">
-            <input type="password" required>
-            <label>Enter your password</label>
+        <div class="input_group">
+          <i class="fa fa-unlock-alt"></i>
+          <input
+            type="password"
+            placeholder="Password"
+            class="input_text"
+            autocomplete="off"
+          />
         </div>
-        <div class="forget">
-            <label for="remember">
-                <input type="checkbox" id="remember">
-                <p>Remember me</p>
-            </label>
-            <a th:href="@{forgotPassword}">Forgot password?</a>
+        <div class="button_group d-flex justify-content-center align-items-center" id="login_button">
+          <a>Submit</a>
         </div>
-        <button type="submit">Log In</button>
-        <div class="register">
-            <p>Don't have an account? <a th:href="@{register}">Register</a></p>
+        <div class="fotter">
+          <a>Forgot Password ?</a>
+          <a th:href="@{createAccount}">Create Account</a>
         </div>
-    </form>
-</div>
-</body>
+        <div class="button_group d-flex justify-content-center align-items-center" id="cancel_button">
+          <a th:href="@{index}">Cancel</a>
+        </div>
+
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script th:src="@{/js/login.js}"></script>
+  </body>
 </html>

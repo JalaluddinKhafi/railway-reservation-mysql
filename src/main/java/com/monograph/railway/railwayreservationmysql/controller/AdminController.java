@@ -41,4 +41,5 @@ public class AdminController {
     public String addSchedule() {
         return "add-schedule";
     }
+
 }
