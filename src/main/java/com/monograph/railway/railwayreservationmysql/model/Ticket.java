@@ -15,26 +15,14 @@ import lombok.ToString;
 public class Ticket {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "t_id")
+    @Column(name = "id")
     private Long id;
-
-    @Column(name = "r_p_name",nullable = false)
-    private String passengerName;
-
-    @Column(name = "r_p_email")
-    private String passengerEmail;
-
-    @Column(name = "r_p_seat_no",nullable = false)
-    private String passengerSeatNo;
-
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "train_id")
     private Train train;
-
     @ManyToOne
     @JoinColumn(name = "passenger_id")
     private Passenger passenger;
-
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;

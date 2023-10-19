@@ -7,10 +7,12 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Home page for railway</title>
+    <title>All trains</title>
 
     <!-- CSS FILES -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
 
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
@@ -22,38 +24,55 @@
 
     <link th:href="@{/css/templatemo-tiya-golf-club.css}" rel="stylesheet">
 </head>
-<html>
-    <body>
-    <div th:replace="fragments/topNav::navbar">
+<body>
+<div th:replace="fragments/topNav::navbar">
+</div>
 
-    </div>
-    <div class="container my-5 col-md-8">
-        <table class="table  table-striped table-hover">
-            <thead>
-            <tr>
-                <th>Train ID</th>
-                <th>Train Name</th>
-                <th>Available Seats</th>
-                <th>Booked Seats</th>
-                <th>Departure Time</th>
-                <th>Source</th>
-                <th>Destination</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="train :${trainDetails}">
-                <td th:text="${train[0]}"></td>
-                <td th:text="${train[1]}"></td>
-                <td th:text="${train[2]}"></td>
-                <td th:text="${train[3]}"></td>
-                <td th:text="${train[4]}"></td>
-                <td th:text="${train[5]}"></td>
-                <td th:text="${train[6]}"></td>
+<div class="container my-5 col-md-8 pt-5">
+    <table id="example" class="table table-striped border-top-0 border-light border-right" style="width:100%">
+        <thead>
+        <tr>
+            <th>Train ID</th>
+            <th>Train Name</th>
+            <th>Available Seats</th>
+            <th>Booked Seats</th>
+            <th>Departure Time</th>
+            <th>Source</th>
+            <th>Destination</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="train :${trainDetails}">
+            <td th:text="${train[0]}"></td>
+            <td th:text="${train[1]}"></td>
+            <td th:text="${train[2]}"></td>
+            <td th:text="${train[3]}"></td>
+            <td th:text="${train[4]}"></td>
+            <td th:text="${train[5]}"></td>
+            <td th:text="${train[6]}"></td>
 
-            </tr>
+        </tr>
 
-            </tbody>
-        </table>
-    </div>
-    </body>
+        </tbody>
+        <tfoot>
+        <tr>
+            <th>Train ID</th>
+            <th>Train Name</th>
+            <th>Available Seats</th>
+            <th>Booked Seats</th>
+            <th>Departure Time</th>
+            <th>Source</th>
+            <th>Destination</th>
+        </tr>
+        </tfoot>
+    </table>
+</div>
+
+<script defer src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<script defer src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<script defer src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+<script defer th:src="@{/js/tableJs.js}"></script>
+</body>
 </html>
+
+

@@ -16,6 +16,7 @@
     <div class="login_form_container">
       <div class="login_form">
         <h2>Login</h2>
+        <form th:action="@{/login}" method="post" th:object="${user}">
         <div class="input_group">
           <i class="fa fa-user"></i>
           <input
@@ -23,6 +24,8 @@
             placeholder="Username"
             class="input_text"
             autocomplete="off"
+            name="username"
+            required
           />
         </div>
         <div class="input_group">
@@ -32,19 +35,25 @@
             placeholder="Password"
             class="input_text"
             autocomplete="off"
+            name="password"
+            required
           />
         </div>
         <div class="button_group d-flex justify-content-center align-items-center" id="login_button">
-          <a>Submit</a>
+          <a th:href="adminHomePage">
+            <button style="all:unset" type="submit">Submit</button>
+          </a>
         </div>
         <div class="fotter">
           <a>Forgot Password ?</a>
           <a th:href="@{createAccount}">Create Account</a>
         </div>
         <div class="button_group d-flex justify-content-center align-items-center" id="cancel_button">
-          <a th:href="@{index}">Cancel</a>
+          <a th:href="@{index}">
+            <button style="all:unset">Cancel</button>
+          </a>
         </div>
-
+        </form>
       </div>
     </div>
 

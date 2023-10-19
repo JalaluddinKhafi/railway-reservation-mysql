@@ -10,7 +10,7 @@ body{
     justify-content: center;
     align-items: center;
     letter-spacing: 1px;
-    background-color: #0c1022;
+    background-color: #3D405B;
 }
 .login_form_container{
     position: relative;
@@ -18,7 +18,7 @@ body{
     height: 600px;
     max-width: 550px;
     max-height: 650px;
-    background: #040717;
+    background: #3D405B;
     border-radius: 50px 5px;
     display: flex;
     align-items: center;
@@ -57,7 +57,7 @@ body{
 .login_form{
     position: absolute;
     content: '';
-    background-color: #0c1022;
+    background-color: #3D405B;
     border-radius: 50px 5px;
     inset: 5px;
     padding: 50px 40px;
@@ -109,6 +109,7 @@ h2{
 
 }
 #login_button a{
+    color: #00ccff;
     position: absolute;
     width: 100%;
     height: 100%;
@@ -119,7 +120,7 @@ h2{
     letter-spacing: 2px;
     border: 1px solid #00ccff;
     border-radius: 50px;
-    background-color: #0c1022;
+    background-color: #3D405B;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -128,6 +129,7 @@ h2{
     margin-top: 30px;
     display: flex;
     justify-content: space-between;
+    color: #00ccff;
 
 }
 .fotter a{
@@ -150,6 +152,7 @@ h2{
 
 }
 #cancel_button a{
+    color: #00ccff;
     position: absolute;
     width: 100%;
     height: 100%;
@@ -160,7 +163,7 @@ h2{
     letter-spacing: 2px;
     border: 1px solid #00ccff;
     border-radius: 50px;
-    background-color: #0c1022;
+    background-color: #3D405B;
     display: flex;
     justify-content: center;
     align-items: center;

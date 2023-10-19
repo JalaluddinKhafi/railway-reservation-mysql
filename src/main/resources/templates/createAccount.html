@@ -27,6 +27,7 @@
                     class="input_text"
                     autocomplete="off"
                     name="firstName"
+                    required
             />
         </div>
 
@@ -41,6 +42,7 @@
                     class="input_text"
                     autocomplete="off"
                     name="lastName"
+                    required
             />
         </div>
 
@@ -55,6 +57,7 @@
                     class="input_text"
                     autocomplete="off"
                     name="email"
+                    required
             />
         </div>
 
@@ -66,6 +69,7 @@
                     class="input_text"
                     autocomplete="off"
                     name="username"
+                    required
             />
         </div>
 
@@ -77,15 +81,23 @@
                     class="input_text"
                     autocomplete="off"
                     name="password"
+                    required
             />
         </div>
 
-        <div class="button_group text-center" id="login_button">
+            <!-- Display error message if it exists -->
+            <div th:if="${errorMessage}" class="alert alert-danger top-5" role="alert">
+                <span th:text="${errorMessage}" class="text-red-500"></span>
+            </div>
+
+
+
+            <div class="button_group align-content-center text-center" id="login_button">
             <a>
                 <button style="all:unset"  type="submit">Create</button>
             </a>
         </div>
-        <div class="button_group text-center" id="cancel_button">
+        <div class="button_group align-content-center text-center" id="cancel_button">
             <a th:href="@{index}">Cancel</a>
         </div>
 

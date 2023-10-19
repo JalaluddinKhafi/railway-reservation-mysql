@@ -1,0 +1,15 @@
+{
+  "name": "railway-reservation-mysql",
+  "version": "1.0.0",
+  "description": "This is a spring boot project with JDK 17 and database is MySQL. you can book a train, search trains.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "tailwindcss": "^3.3.3"
+  }
+}

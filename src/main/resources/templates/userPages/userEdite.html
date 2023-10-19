@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Modal 05</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+
+    <link rel="stylesheet" th:href="@{/modal-form/css/ionicons.min.css}">
+    <link rel="stylesheet" th:href="@{/modal-form/css/style.css}">
+</head>
+<body>
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close d-flex align-items-center justify-content-center" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="ion-ios-close"></span>
+                </button>
+            </div>
+            <div class="modal-body p-4 py-5 p-md-5">
+                <h3 class="text-center mb-3">Create Your Account</h3>
+                <ul class="ftco-footer-social p-0 text-center">
+                    <li class="ftco-animate"><a href="#" data-toggle="tooltip" data-placement="top" title="Twitter"><span class="ion-logo-twitter"></span></a></li>
+                    <li class="ftco-animate"><a href="#" data-toggle="tooltip" data-placement="top" title="Facebook"><span class="ion-logo-facebook"></span></a></li>
+                    <li class="ftco-animate"><a href="#" data-toggle="tooltip" data-placement="top" title="Instagram"><span class="ion-logo-instagram"></span></a></li>
+                </ul>
+                <form action="#" class="signup-form">
+                    <div class="form-group mb-2">
+                        <label for="name">Full Name</label>
+                        <input type="text" class="form-control" placeholder="John Doe">
+                    </div>
+                    <div class="form-group mb-2">
+                        <label for="email">Email Address</label>
+                        <input type="text" class="form-control" placeholder="johndoe@gmail.com">
+                    </div>
+                    <div class="form-group mb-2">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" placeholder="Password">
+                    </div>
+                    <div class="form-group mb-2">
+                        <button type="submit" class="form-control btn btn-primary rounded submit px-3">Sign Up</button>
+                    </div>
+                    <div class="form-group d-md-flex">
+                        <div class="w-100 text-center">
+                            <a href="#" class="forgot">I'm already a member</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script th:src="@{/modal-form/js/jquery.min.js}"></script>
+<script th:src="@{/modal-form/js/popper.js}"></script>
+<script th:src="@{/modal-form/js/bootstrap.min.js}"></script>
+<script th:src="@{/modal-form/js/main.js}"></script>
+</body>
+</html>
