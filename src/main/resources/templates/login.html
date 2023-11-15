@@ -1,63 +1,48 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Animated Login From</title>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <!-- Pills navs -->
+    <ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
+        <li class="nav-item" role="presentation">
+            <a class="nav-link active" id="tab-login" data-mdb-toggle="pill" th:href="@{login}" role="tab"
+               aria-controls="pills-login" aria-selected="true">Login</a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link" id="tab-register" data-mdb-toggle="pill" th:href="@{createAccount}" role="tab"
+               aria-controls="pills-register" aria-selected="false">Register</a>
+        </li>
+    </ul>
+    <!-- Pills navs -->
 
-    <link rel="stylesheet" th:href="@{/css/login.css}" />
-  </head>
-  <body>
-    <div class="login_form_container">
-      <div class="login_form">
-        <h2>Login</h2>
-        <form th:action="@{/login}" method="post" th:object="${user}">
-        <div class="input_group">
-          <i class="fa fa-user"></i>
-          <input
-            type="text"
-            placeholder="Username"
-            class="input_text"
-            autocomplete="off"
-            name="username"
-            required
-          />
+    <!-- Pills content -->
+    <div class="tab-content">
+        <div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
+            <form th:action="@{/login}" method="post" >
+                <!-- Name input -->
+                <div class="form-outline mb-4">
+                    <input type="text" name="username" id="username" class="form-control" required/>
+                    <label class="form-label" for="username">Username</label>
+                </div>
+                <!-- Password input -->
+                <div class="form-outline mb-4">
+                    <input type="password" id="registerPassword" name="password" class="form-control"/>
+                    <label class="form-label" for="registerPassword">Password</label>
+                </div>
+
+                <!-- Submit button -->
+                <button type="submit" class="btn btn-primary btn-block mb-3">Login</button>
+            </form>
         </div>
-        <div class="input_group">
-          <i class="fa fa-unlock-alt"></i>
-          <input
-            type="password"
-            placeholder="Password"
-            class="input_text"
-            autocomplete="off"
-            name="password"
-            required
-          />
-        </div>
-        <div class="button_group d-flex justify-content-center align-items-center" id="login_button">
-          <a th:href="adminHomePage">
-            <button style="all:unset" type="submit">Submit</button>
-          </a>
-        </div>
-        <div class="fotter">
-          <a>Forgot Password ?</a>
-          <a th:href="@{createAccount}">Create Account</a>
-        </div>
-        <div class="button_group d-flex justify-content-center align-items-center" id="cancel_button">
-          <a th:href="@{index}">
-            <button style="all:unset">Cancel</button>
-          </a>
-        </div>
-        </form>
-      </div>
     </div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-    <script th:src="@{/js/login.js}"></script>
-  </body>
+    <!-- Pills content -->
+</div>
+</body>
 </html>

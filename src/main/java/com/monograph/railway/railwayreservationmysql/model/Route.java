@@ -24,7 +24,7 @@ public class Route {
     private String destination;
 
     @OneToMany(
-            cascade = CascadeType.ALL,
+            cascade = CascadeType.ALL, orphanRemoval = false,
             mappedBy = "route")
     private List<TrainStatus> trainStatuse;
 

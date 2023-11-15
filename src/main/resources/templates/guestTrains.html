@@ -28,9 +28,10 @@
 <div th:replace="fragments/topNav::navbar">
 </div>
 
-<div class="container my-5 col-md-8 pt-5">
-    <table id="example" class="table table-striped border-top-0 border-light border-right" style="width:100%">
-        <thead>
+<div class="container my-5 col-md-8 pt-5 border rounded p-4">
+    <h2 class="text-center mb-4 font-weight-bold">Schedule of All Trains</h2>
+    <table id="example" class="table table-bordered table-striped">
+        <thead class="thead-dark">
         <tr>
             <th>Train ID</th>
             <th>Train Name</th>
@@ -50,23 +51,11 @@
             <td th:text="${train[4]}"></td>
             <td th:text="${train[5]}"></td>
             <td th:text="${train[6]}"></td>
-
         </tr>
-
         </tbody>
-        <tfoot>
-        <tr>
-            <th>Train ID</th>
-            <th>Train Name</th>
-            <th>Available Seats</th>
-            <th>Booked Seats</th>
-            <th>Departure Time</th>
-            <th>Source</th>
-            <th>Destination</th>
-        </tr>
-        </tfoot>
     </table>
 </div>
+
 
 <script defer src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <script defer src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>

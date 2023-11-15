@@ -33,7 +33,7 @@ public class User {
     @Column(name = "u_password", nullable = false)
     private String password;
     @OneToMany(
-            cascade = CascadeType.ALL,
+            cascade = CascadeType.ALL, orphanRemoval = false,
             mappedBy = "user")
     private List<Ticket> tickets;
 

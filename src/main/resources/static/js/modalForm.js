@@ -1,7 +1,11 @@
 $(document).ready(function (){
+    $('.login-modal').on('click', function (event) {
+        $('#loginForm').modal();
+    });
+});
 
-    $('.table .eBtn').on('click',function (event){
-
-        $('.myForm #exampleModal').modal();
+$(document).ready(function (){
+    $('.eBtn').on('click', function (event) {
+        $('#modalForm').modal();
     });
 });

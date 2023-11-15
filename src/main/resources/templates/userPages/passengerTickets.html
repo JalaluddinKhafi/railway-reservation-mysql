@@ -2,27 +2,88 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="apple-touch-icon" sizes="76x76" th:href="@{/dashboard/img/apple-icon.png}">
-    <link rel="icon" type="image/png" th:href="@{/dashboard/img/favicon.png}">
     <title>
         Passenger Tickets
     </title>
+
+    <!-- Optional: Add your own styling for the logo and buttons -->
+    <style>
+        .ticket-card {
+            background-color: #f8f9fa; /* Light background color */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow effect */
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            background-color: #e22e6e; /* Header background color */
+            color: white; /* Header text color */
+            padding: 15px;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+
+        .logo {
+            max-width: 40px; /* Adjust the logo size */
+            margin-right: 3px; /* Add space between logo and text */
+            max-height: 40px;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .font-weight-bold {
+            /* Your existing bold style */
+            font-weight: bold;
+        }
+
+        .print-button {
+            margin-top: 15px;
+        }
+
+        /* Print styles */
+        @media print {
+            body {
+                visibility: hidden;
+            }
+
+            .ticket-card {
+                visibility: visible;
+                position: absolute;
+                left: 0;
+                top: 0;
+            }
+
+            .print-button {
+                display: none;
+            }
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
     <!--     Fonts and icons     -->
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
-    <!-- Nucleo Icons -->
-    <link th:href="@{/dashboard/css/nucleo-icons.css}" rel="stylesheet" />
-    <link th:href="@{/dashboard/css/nucleo-svg.css}" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700"/>
     <!-- Font Awesome Icons -->
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
     <!-- Material Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
     <!-- CSS Files -->
-    <link id="pagestyle" href="/dashboard/css/material-dashboard.css?v=3.0.0" rel="stylesheet" />
+    <link id="page-style" href="/dashboard/css/material-dashboard.css?v=3.0.0" rel="stylesheet"/>
 </head>
 <body class="g-sidenav-show  bg-gray-200">
-<aside style="background-color: rgb(61 64 91)" class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 " id="sidenav-main">
+<aside style="background-color: rgb(61 64 91)"
+       class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 "
+       id="sidenav-main">
     <div th:include="fragments/aside::sidenav"></div>
     <hr class="horizontal light mt-0 mb-2">
     <div th:include="fragments/aside::collapseNav"></div>
@@ -32,229 +93,77 @@
     <!-- Navbar -->
     <div th:include="fragments/aside::navDashboard"></div>
     <!-- End Navbar -->
-<!--body for content started-->
-<div class="container-fluid py-4">
-    <div class="row w-screen">
-        <div class="col-12">
-            <div class="card my-4 container-fluid">
-                <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-                    <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-                        <h6 class="text-white text-capitalize ps-3">Authors table</h6>
-                    </div>
-                </div>
-                <div class="card-body px-0 pb-2">
-                    <div class="table-responsive p-0">
-                        <table class="table align-items-center mb-0">
-                            <thead>
-                            <tr>
-                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Author</th>
-                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Function</th>
-                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
-                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Employed</th>
-                                <th class="text-secondary opacity-7"></th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>
-                                    <div class="d-flex px-2 py-1">
-                                        <div>
-                                            <img src="../assets/img/team-2.jpg" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
-                                        </div>
-                                        <div class="d-flex flex-column justify-content-center">
-                                            <h6 class="mb-0 text-sm">John Michael</h6>
-                                            <p class="text-xs text-secondary mb-0">john@creative-tim.com</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <p class="text-xs font-weight-bold mb-0">Manager</p>
-                                    <p class="text-xs text-secondary mb-0">Organization</p>
-                                </td>
-                                <td class="align-middle text-center text-sm">
-                                    <span class="badge badge-sm bg-gradient-success">Online</span>
-                                </td>
-                                <td class="align-middle text-center">
-                                    <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
-                                </td>
-                                <td class="align-middle">
-                                    <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                                        Edit
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="d-flex px-2 py-1">
-                                        <div>
-                                            <img src="../assets/img/team-3.jpg" class="avatar avatar-sm me-3 border-radius-lg" alt="user2">
-                                        </div>
-                                        <div class="d-flex flex-column justify-content-center">
-                                            <h6 class="mb-0 text-sm">Alexa Liras</h6>
-                                            <p class="text-xs text-secondary mb-0">alexa@creative-tim.com</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <p class="text-xs font-weight-bold mb-0">Programator</p>
-                                    <p class="text-xs text-secondary mb-0">Developer</p>
-                                </td>
-                                <td class="align-middle text-center text-sm">
-                                    <span class="badge badge-sm bg-gradient-secondary">Offline</span>
-                                </td>
-                                <td class="align-middle text-center">
-                                    <span class="text-secondary text-xs font-weight-bold">11/01/19</span>
-                                </td>
-                                <td class="align-middle">
-                                    <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                                        Edit
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="d-flex px-2 py-1">
-                                        <div>
-                                            <img src="../assets/img/team-4.jpg" class="avatar avatar-sm me-3 border-radius-lg" alt="user3">
-                                        </div>
-                                        <div class="d-flex flex-column justify-content-center">
-                                            <h6 class="mb-0 text-sm">Laurent Perrier</h6>
-                                            <p class="text-xs text-secondary mb-0">laurent@creative-tim.com</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <p class="text-xs font-weight-bold mb-0">Executive</p>
-                                    <p class="text-xs text-secondary mb-0">Projects</p>
-                                </td>
-                                <td class="align-middle text-center text-sm">
-                                    <span class="badge badge-sm bg-gradient-success">Online</span>
-                                </td>
-                                <td class="align-middle text-center">
-                                    <span class="text-secondary text-xs font-weight-bold">19/09/17</span>
-                                </td>
-                                <td class="align-middle">
-                                    <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                                        Edit
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="d-flex px-2 py-1">
-                                        <div>
-                                            <img src="../assets/img/team-3.jpg" class="avatar avatar-sm me-3 border-radius-lg" alt="user4">
-                                        </div>
-                                        <div class="d-flex flex-column justify-content-center">
-                                            <h6 class="mb-0 text-sm">Michael Levi</h6>
-                                            <p class="text-xs text-secondary mb-0">michael@creative-tim.com</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <p class="text-xs font-weight-bold mb-0">Programator</p>
-                                    <p class="text-xs text-secondary mb-0">Developer</p>
-                                </td>
-                                <td class="align-middle text-center text-sm">
-                                    <span class="badge badge-sm bg-gradient-success">Online</span>
-                                </td>
-                                <td class="align-middle text-center">
-                                    <span class="text-secondary text-xs font-weight-bold">24/12/08</span>
-                                </td>
-                                <td class="align-middle">
-                                    <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                                        Edit
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="d-flex px-2 py-1">
-                                        <div>
-                                            <img src="../assets/img/team-2.jpg" class="avatar avatar-sm me-3 border-radius-lg" alt="user5">
-                                        </div>
-                                        <div class="d-flex flex-column justify-content-center">
-                                            <h6 class="mb-0 text-sm">Richard Gran</h6>
-                                            <p class="text-xs text-secondary mb-0">richard@creative-tim.com</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <p class="text-xs font-weight-bold mb-0">Manager</p>
-                                    <p class="text-xs text-secondary mb-0">Executive</p>
-                                </td>
-                                <td class="align-middle text-center text-sm">
-                                    <span class="badge badge-sm bg-gradient-secondary">Offline</span>
-                                </td>
-                                <td class="align-middle text-center">
-                                    <span class="text-secondary text-xs font-weight-bold">04/10/21</span>
-                                </td>
-                                <td class="align-middle">
-                                    <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                                        Edit
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="d-flex px-2 py-1">
-                                        <div>
-                                            <img src="../assets/img/team-4.jpg" class="avatar avatar-sm me-3 border-radius-lg" alt="user6">
-                                        </div>
-                                        <div class="d-flex flex-column justify-content-center">
-                                            <h6 class="mb-0 text-sm">Miriam Eric</h6>
-                                            <p class="text-xs text-secondary mb-0">miriam@creative-tim.com</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <p class="text-xs font-weight-bold mb-0">Programator</p>
-                                    <p class="text-xs text-secondary mb-0">Developer</p>
-                                </td>
-                                <td class="align-middle text-center text-sm">
-                                    <span class="badge badge-sm bg-gradient-secondary">Offline</span>
-                                </td>
-                                <td class="align-middle text-center">
-                                    <span class="text-secondary text-xs font-weight-bold">14/09/20</span>
-                                </td>
-                                <td class="align-middle">
-                                    <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                                        Edit
-                                    </a>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+    <!--body for content started-->
+<!--    <div class="container-fluid py-4">-->
+<!--        <div class="row w-screen">-->
+<!--            <div class="col-12">-->
+<!--                <div class="card my-4 container-fluid">-->
+
+    <div class=" custom-container mx-auto outline-1  mt-4" style="max-width: 600px !important;">
+        <h2 class="text-center mb-4">All Tickets</h2>
+
+        <!-- Iterate over the list of tickets and create a decorated card for each ticket -->
+        <div th:each="ticket : ${tickets}" class="ticket-card card mb-4" th:id="'ticket-' + ${ticket.id}">
+            <div class="card-header bg-info text-white d-flex justify-content-between align-items-center">
+                <h5 class="card-title font-weight-bold mb-0 mr-2">Ticket Details</h5>
+                <img src="/images/logo.png" alt="Logo" class="img-fluid logo" />
+            </div>
+
+
+            <!-- Card body with ticket details -->
+            <div class="card-body">
+                <!-- Display ticket number in bold -->
+                <p class="card-text font-weight-bold" th:text="'Ticket Number: . . . . . . . . . . . . . . . . . . . .  ' + ${ticket.id}"></p>
+                <hr>
+                <!-- Display passenger and train details -->
+                <p class="card-text font-weight-bold" th:text="'Passenger: . . . . . . . . . . . . . . . . . . . . . . . .   ' + ${ticket.passenger.firstName} + ' ' + ${ticket.passenger.lastName}"></p>
+                <p class="card-text font-weight-bold" th:text="'Number of Seat: . . . . . . . . . . . . . . . . . . . .     ' + ${ticket.passenger.numberOfSeat}"></p>
+                <p class="card-text font-weight-bold" th:text="'Train: . . . . . . . . . . . . . . . . . . . . . . . . . . . .    ' + ${ticket.train.name}"></p>
+                <p class="card-text font-weight-bold" th:text="'Train ID: . . . . . . . . . . . . . . . . . . . . . . . . . . .     ' + ${ticket.train.id}"></p>
+                <p class="card-text font-weight-bold" th:text="'Source-Destination: . . . . . . . . . . . . . . . . .     ' + ${ticket.train.trainStatus.route.source} + ' to ' + ${ticket.train.trainStatus.route.destination}"></p>
+                <p class="card-text font-weight-bold" th:text="'Date of Journey: . . . . . . . . . . . . . . . . . . . .     ' + ${ticket.train.trainStatus.departureTime}"></p>
+
+                <!-- Add other ticket details as needed -->
+
+                <!-- Buttons for print and cancel -->
+            </div>
+
+            <div class="text-center mt-3" style="width: 100%;">
+                <button type="button" class="btn btn-success mr-2 print-button" th:onclick="'printTicket(\'ticket-' + ${ticket.id} + '\')'">Print</button>
+                <a th:href="@{/cancelTicket/{id}(id=${ticket.id})}">
+                    <button type="button" class="btn btn-danger print-button">Cancel</button>
+                </a>
             </div>
         </div>
     </div>
-</div>
-<!--    body for content ended-->
+
+
 </main>
 <div th:replace="fragments/aside::settings"></div>
 <!--   Core JS Files   -->
-<script th:src="@{/dashboard/js/core/popper.min.js}"></script>
-<script th:src="@{/dashboard/js/core/bootstrap.min.js}"></script>
 <script th:src="@{/dashboard/js/plugins/perfect-scrollbar.min.js}"></script>
-<script th:src="@{/dashboard/js/plugins/smooth-scrollbar.min.js}"></script>
+<script src="/dashboard/js/material-dashboard.min.js?v=3.0.0"></script>
+
+
+<!-- javaScript to trigger the print button-->
+<!-- Add jsPDF and html2canvas libraries -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+
+<!-- JavaScript to trigger the print and convert to PDF buttons -->
 <script>
-    var win = navigator.platform.indexOf('Win') > -1;
-    if (win && document.querySelector('#sidenav-scrollbar')) {
-        var options = {
-            damping: '0.5'
-        }
-        Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+    function printTicket(ticketId) {
+        var printContents = document.getElementById(ticketId).outerHTML;
+        var originalContents = document.body.innerHTML;
+
+        document.body.innerHTML = printContents;
+
+        window.print();
+
+        document.body.innerHTML = originalContents;
     }
 </script>
-<!-- Github buttons -->
-<script async defer src="https://buttons.github.io/buttons.js"></script>
-<!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
-<script src="/dashboard/js/material-dashboard.min.js?v=3.0.0"></script>
 </body>
-</body>
-
 </html>
 
 

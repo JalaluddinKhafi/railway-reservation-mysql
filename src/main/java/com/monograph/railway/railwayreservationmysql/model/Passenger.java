@@ -31,6 +31,10 @@ public class Passenger {
 
     @Column(name = "p_gender")
     private String gender;
+
+    @Column(name = "p_numberOf_seat")
+    private int numberOfSeat;
+
     @OneToMany(cascade = CascadeType.ALL,
     mappedBy = "passenger")
     private List<Ticket> tickets;

@@ -25,7 +25,7 @@ public class Train {
     private Integer totalSeats;
 
     @OneToOne(
-            cascade = CascadeType.ALL,
+            cascade = CascadeType.ALL, orphanRemoval = false,
             mappedBy = "train")
     private TrainStatus trainStatus;
 
