@@ -35,6 +35,8 @@ public class Passenger {
     @Column(name = "p_numberOf_seat")
     private int numberOfSeat;
 
+    @Column(name = "totalPrice")
+    private double TotalPrice;
     @OneToMany(cascade = CascadeType.ALL,
     mappedBy = "passenger")
     private List<Ticket> tickets;

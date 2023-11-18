@@ -162,27 +162,48 @@ public class UserController {
         model.addAttribute("schedules", schedules);
         return "userPages/schedule";
     }
+    @GetMapping("/errorPage")
+    public String showPopup(Model model) {
+        model.addAttribute("errorMessage", "Not enough available seats for booking.");
+        return "userPages/errorPage";
+    }
     @GetMapping("/book/{id}")
     public String showPassengerForm(Model model, @PathVariable Long id){
-        Train train=trainService.getTrainById(id);
-        trianId=id;
-        model.addAttribute("train",train);
-        model.addAttribute("passenger",new Passenger());
+        Train train = trainService.getTrainById(id);
+        trianId = id;
+        model.addAttribute("train", train);
+        model.addAttribute("passenger", new Passenger());
+        model.addAttribute("errorMessage", ""); // Add an empty error message initially
         return "userPages/passengerForm";
     }
-    @PostMapping("/bookTicket")
-    public String bookTicket(@ModelAttribute Passenger passenger, HttpSession session){
-        Long userId=(Long) session.getAttribute("id");
-        User user=userService.getUserById(userId);
-        Train bookedTrain =trainService.getTrainById(trianId);
-        Ticket ticket=new Ticket();
-        ticket.setUser(user);
-        ticket.setTrain(bookedTrain );
-        ticket.setPassenger(passengerService.savePassenger(passenger));
-        ticketService.bookTicket(ticket);
 
-        return "redirect:/passengerTickets";
+    @PostMapping("/bookTicket")
+    public String bookTicket(
+            @ModelAttribute Passenger passenger,
+            HttpSession session,
+            RedirectAttributes redirectAttributes) {
+
+        Long userId = (Long) session.getAttribute("id");
+        User user = userService.getUserById(userId);
+        Train bookedTrain = trainService.getTrainById(trianId);
+
+        int requestedSeats = passenger.getNumberOfSeat();
+        int availableSeats = bookedTrain.getTrainStatus().getAvailableSeat();
+
+        if (requestedSeats > availableSeats) {
+            // Handle the case where the requested seats are more than available seats
+            return "redirect:/errorPage"; // Redirect to the form page with the error message
+        } else {
+            Ticket ticket = new Ticket();
+            ticket.setUser(user);
+            ticket.setTrain(bookedTrain);
+            ticket.setPassenger(passengerService.savePassenger(passenger));
+            ticketService.bookTicket(ticket);
+
+            return "redirect:/passengerTickets";
+        }
     }
+
     @GetMapping("/passengerTickets")
     public String allTickets(Model model, HttpSession session) {
         Long userId=(Long) session.getAttribute("id");
@@ -194,11 +215,41 @@ public class UserController {
         return "userPages/passengerTickets";
     }
 
+//    @GetMapping("/cancelTicket/{id}")
+//    public String cancelTicket(@PathVariable Long id, Model model) {
+//        try {
+//            // Attempt to cancel the ticket
+//            ticketService.cancelTicket(id);
+//
+//            // If no exception occurred, assume the cancellation was successful
+//            model.addAttribute("cancellationMessage", "Ticket successfully canceled.");
+//        } catch (Exception e) {
+//            // Handle the exception (e.g., log it)
+//            e.printStackTrace();
+//
+//            // If an exception occurred, assume the cancellation failed
+//            model.addAttribute("cancellationMessage", "Failed to cancel the ticket.");
+//        }
+//
+//        // Redirect to the ticket list page
+//        return "redirect:/passengerTickets";
+//    }
+
     @GetMapping("/cancelTicket/{id}")
-    public String cancelTicket(@PathVariable Long id) {
+    public String showCancelConfirmation(@PathVariable Long id, Model model) {
+        model.addAttribute("ticketId", id);
+        return "userPages/cancelPage";
+    }
+    @GetMapping("/confirmCancelTicket/{id}")
+    public String confirmCancelTicket(@PathVariable Long id) {
+        // Call the service method to cancel the ticket
         ticketService.cancelTicket(id);
+
+        // Redirect to the ticket list page or another appropriate page
         return "redirect:/passengerTickets";
     }
+
+
 
 
 }

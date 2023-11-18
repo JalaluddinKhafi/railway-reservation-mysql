@@ -24,8 +24,14 @@ public class Train {
     @Column(name = "train_total_seats", nullable = false)
     private Integer totalSeats;
 
+    @Column(name = "money_amount")
+    private Double price;
+
+    @Column(name = "currency_symbol")
+    private String currencySymbol;
+
     @OneToOne(
-            cascade = CascadeType.ALL, orphanRemoval = false,
+            cascade = CascadeType.ALL, orphanRemoval = true,
             mappedBy = "train")
     private TrainStatus trainStatus;
 

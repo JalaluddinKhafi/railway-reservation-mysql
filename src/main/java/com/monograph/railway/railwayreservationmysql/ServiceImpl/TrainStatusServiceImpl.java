@@ -3,6 +3,7 @@ package com.monograph.railway.railwayreservationmysql.ServiceImpl;
 import com.monograph.railway.railwayreservationmysql.model.TrainStatus;
 import com.monograph.railway.railwayreservationmysql.repository.TrainStatusRepository;
 import com.monograph.railway.railwayreservationmysql.service.TrainStatusService;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,8 +17,8 @@ public class TrainStatusServiceImpl implements TrainStatusService {
     }
 
     @Override
-    public TrainStatus saveTrainStatus(TrainStatus trainStatus) {
-        return trainStatusRepository.save(trainStatus);
+    public void saveTrainStatus(TrainStatus trainStatus) {
+        trainStatusRepository.save(trainStatus);
     }
 
     @Override
@@ -31,13 +32,20 @@ public class TrainStatusServiceImpl implements TrainStatusService {
     }
 
     @Override
+    @Transactional
     public void deleteTrainStatus(Long trainId) {
-        trainStatusRepository.deleteById(trainId);
+        try {
+            trainStatusRepository.deleteById(trainId);
+            System.out.println("Train Status deleted by ID: "+trainId);
+        } catch (Exception e) {
+            System.out.println("Error deleting Train Status with ID: {} " +trainId+" "+ e);
+            // Handle the exception as needed.
+        }
     }
 
-    @Override
-    public List<Object[]> getTrainDetails() {
-        return trainStatusRepository.getTrainDetails();
-    }
+//    @Override
+//    public List<Object[]> getTrainDetails() {
+//        return trainStatusRepository.getTrainDetails();
+//    }
 }
 

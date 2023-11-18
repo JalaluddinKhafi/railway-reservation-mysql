@@ -2,6 +2,7 @@ package com.monograph.railway.railwayreservationmysql.ServiceImpl;
 
 import com.monograph.railway.railwayreservationmysql.model.Passenger;
 import com.monograph.railway.railwayreservationmysql.model.Ticket;
+import com.monograph.railway.railwayreservationmysql.model.Train;
 import com.monograph.railway.railwayreservationmysql.model.TrainStatus;
 import com.monograph.railway.railwayreservationmysql.repository.TicketRepository;
 import com.monograph.railway.railwayreservationmysql.service.PassengerService;
@@ -33,28 +34,37 @@ public class TicketServiceImpl implements TicketService {
     @Transactional
     public void bookTicket(Ticket ticket) {
         TrainStatus trainStatus = ticket.getTrain().getTrainStatus();
+        Train train = ticket.getTrain();
         int numberOfSeats = ticket.getPassenger().getNumberOfSeat();
 
         // Ensure that bookedSeat and availableSeat are not null
-        Integer bookedSeat = trainStatus.getBookedSeat();
-        int currentBookedSeats = (bookedSeat != null) ? bookedSeat : 0;
+        int currentBookedSeats = trainStatus.getBookedSeat() != null ? trainStatus.getBookedSeat() : 0;
+        int currentAvailableSeats = trainStatus.getAvailableSeat() != null ? trainStatus.getAvailableSeat() : 0;
 
-        Integer availableSeat = trainStatus.getAvailableSeat();
-        int currentAvailableSeats = (availableSeat != null) ? availableSeat : 0;
+        // Check if there are enough available seats
+        if (currentAvailableSeats < numberOfSeats) {
+            System.out.println("Not enough available seats for booking.");
+        }else {
 
-        // Update booked seats and available seats in TrainStatus
-        trainStatus.setBookedSeat(currentBookedSeats + numberOfSeats);
-        trainStatus.setAvailableSeat(currentAvailableSeats - numberOfSeats);
+            // Calculate the total price based on the number of seats and price per seat
+            double pricePerSeat = train.getPrice() != null ? train.getPrice() : 0.0;
+            double totalPrice = numberOfSeats * pricePerSeat;
 
-        // Save the modified TrainStatus
-        trainService.saveTrainStatus(trainStatus);
+            // Update booked seats and available seats in TrainStatus
+            trainStatus.setBookedSeat(currentBookedSeats + numberOfSeats);
+            trainStatus.setAvailableSeat(currentAvailableSeats - numberOfSeats);
 
-        // Save passenger information
-        Passenger passenger = ticket.getPassenger();
-        passengerService.savePassenger(passenger);
+            // Save the modified TrainStatus
+            trainService.saveTrainStatus(trainStatus);
 
-        // Save the ticket
-        ticketRepository.save(ticket);
+            // Save passenger information with calculated total price
+            Passenger passenger = ticket.getPassenger();
+            passenger.setTotalPrice(totalPrice);
+            passengerService.savePassenger(passenger);
+
+            // Save the ticket
+            ticketRepository.save(ticket);
+        }
     }
     @Override
     public Ticket saveTicket(Ticket ticket) {

@@ -48,7 +48,10 @@
             <div class=" card my-4 container-fluid col-md-6 border p-3">
                 <form th:action="@{/bookTicket}" method="post" th:object="${passenger}">
                     <fieldset>
-                        <p class="align-content-center text-center">Passenger Information</p>
+                        <p class="align-content-center text-bold text-center">Passenger Information</p>
+                        <div th:if="${errorMessage}" style="color: red;">
+                            <p th:text="${errorMessage}"></p>
+                        </div>
                         <input type="hidden" class="form-control  bg-white border pl-2" name="id" th:value="${train.id}">
 
                         <div class="form-group mb-3">
@@ -87,6 +90,7 @@
                                 <option value="other">Other</option>
                             </select>
                         </div>
+
                         <button type="submit" class="btn btn-primary">Save</button>
                     </fieldset>
                 </form>

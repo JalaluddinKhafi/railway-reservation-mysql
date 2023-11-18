@@ -3,6 +3,7 @@ package com.monograph.railway.railwayreservationmysql.ServiceImpl;
 import com.monograph.railway.railwayreservationmysql.model.User;
 import com.monograph.railway.railwayreservationmysql.repository.UserRepository;
 import com.monograph.railway.railwayreservationmysql.service.UserService;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,7 +23,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUserById(Long id) {
-        return userRepository.findById(id).orElse(null);
+        return userRepository.findById(id).get();
     }
 
     @Override
@@ -31,10 +32,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public void deleteUser(Long id) {
-        userRepository.deleteById(id);
+        try {
+            userRepository.deleteById(id);
+            System.out.println("User deleted by ID: "+id);
+        } catch (Exception e) {
+            System.out.println("Error deleting User with ID: {} " +id+" "+ e);
+            // Handle the exception as needed.
+        }
     }
-
     @Override
     public User findByUsername(String username) {
         return userRepository.findByUsername(username);

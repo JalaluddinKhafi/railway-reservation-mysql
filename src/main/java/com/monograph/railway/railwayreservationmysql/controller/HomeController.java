@@ -3,6 +3,7 @@ package com.monograph.railway.railwayreservationmysql.controller;
 import com.monograph.railway.railwayreservationmysql.ServiceImpl.RouteServiceImpl;
 import com.monograph.railway.railwayreservationmysql.ServiceImpl.TrainStatusServiceImpl;
 import com.monograph.railway.railwayreservationmysql.model.Route;
+import com.monograph.railway.railwayreservationmysql.model.TrainStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,8 +20,8 @@ public class HomeController {
     RouteServiceImpl routeService;
     @GetMapping("/guestTrains")
     public String getAllTriansDetials(Model model){
-        List<Object[]> trainDetails=trainStatusService.getTrainDetails();
-        model.addAttribute("trainDetails",trainDetails);
+        List<TrainStatus> schedules = trainStatusService.getAllTrainStatuses();
+        model.addAttribute("schedules", schedules);
         return "guestTrains";
 
     }
