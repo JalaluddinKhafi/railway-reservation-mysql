@@ -121,8 +121,8 @@
                 <p class="card-text font-weight-bold" th:text="'Train: . . . . . . . . . . . . . . . . . . . . . . . . . . . .    ' + ${ticket.train.name}"></p>
                 <p class="card-text font-weight-bold" th:text="'Train ID: . . . . . . . . . . . . . . . . . . . . . . . . . . .     ' + ${ticket.train.id}"></p>
                 <p class="card-text font-weight-bold" th:text="'Source-Destination: . . . . . . . . . . . . . . . . .     ' + ${ticket.train.trainStatus.route.source} + ' to ' + ${ticket.train.trainStatus.route.destination}"></p>
-                <p class="card-text font-weight-bold" th:text="'Date of Journey: . . . . . . . . . . . . . . . . . . . .     ' + ${ticket.train.trainStatus.departureTime}"></p>
-
+                <p class="card-text font-weight-bold" th:text="'Date of Journey: . . . . . . . . . . . . . . . . . . . .     ' + ${ticket.train.trainStatus.departureDate}"> </p>
+                <p class="card-text font-weight-bold" th:text="'Time of Journey: . . . . . . . . . . . . . . . . . . . .     ' + ${ticket.train.trainStatus.departureTime}"></p>
                 <!-- Add other ticket details as needed -->
 
                 <!-- Buttons for print and cancel -->

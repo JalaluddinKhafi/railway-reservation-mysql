@@ -3,8 +3,10 @@ package com.monograph.railway.railwayreservationmysql.model;
 
 import jakarta.persistence.*;
 import lombok.*;
-
-import java.time.LocalDateTime;
+import org.springframework.format.annotation.DateTimeFormat;
+;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Data
 @AllArgsConstructor
@@ -28,8 +30,13 @@ public class TrainStatus {
     @Column(name = "st_booked_seat")
     private Integer bookedSeat;
 
+    @Column(name = "st_departure_date")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    private LocalDate departureDate;
+
     @Column(name = "st_departure_time")
-    private LocalDateTime departureTime;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
+    private LocalTime departureTime;
 
     @ManyToOne
     @JoinColumn(name = "route_id")

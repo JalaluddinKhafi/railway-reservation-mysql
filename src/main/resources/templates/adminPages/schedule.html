@@ -13,11 +13,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
-    <!--     Fonts and icons     -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 
     <!--     Fonts and icons     -->
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700"/>
+<!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">-->
+
+    <!--     Fonts and icons     -->
+    <link rel="stylesheet" type="text/css"
+          href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700"/>
     <!-- Font Awesome Icons -->
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
     <!-- Material Icons -->
@@ -40,13 +42,15 @@
     <div th:include="fragments/admin_aside::navDashboard"></div>
     <!-- End Navbar -->
     <div class="container-fluid py-4">
-        <div class="container">
-            <div class="d-flex justify-content-between align-items-center mb-4">
-                <h3 class="text-center">Schedule</h3>
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h3 class="text-center">Schedule</h3>
+            <a th:href="@{/admin/scheduleForm}">
                 <button class="btn btn-secondary" id="addTrainBtn">Add new schedule</button>
-            </div>
-            <table id="example" class="table table-striped border" style="width:100%">
-                <thead>
+            </a>
+        </div>
+        <div class="container">
+            <table id="example" class="table table-striped border" style="width:100%; font-size: 14px;">
+                <thead class="thead-light">
                 <tr>
                     <th>Train ID</th>
                     <th>Train Name</th>
@@ -55,6 +59,7 @@
                     <th>Price</th>
                     <th>Source</th>
                     <th>Destination</th>
+                    <th>Departure Date</th>
                     <th>Departure Time</th>
                     <th>Action</th>
                 </tr>
@@ -68,8 +73,10 @@
                     <td th:text="${schedule.train.price} + ${schedule.train.currencySymbol}"></td>
                     <td th:text="${schedule.route.source}"></td>
                     <td th:text="${schedule.route.destination}"></td>
+                    <td th:text="${schedule.departureDate}"></td>
                     <td th:text="${schedule.departureTime}"></td>
-                    <td><a class="a" style="color:blue; margin-left: 8px; margin-right: 8px" th:href="@{/admin/editSchedule/{id}(id=${schedule.getStatusId()})}">
+                    <td><a class="a" style="color:blue; margin-left: 8px; margin-right: 8px"
+                           th:href="@{/admin/editSchedule/{id}(id=${schedule.getStatusId()})}">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                              class="bi bi-pencil-square" viewBox="0 0 16 16">
                             <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>

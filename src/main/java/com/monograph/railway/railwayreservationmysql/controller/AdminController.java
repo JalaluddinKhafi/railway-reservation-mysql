@@ -6,9 +6,7 @@ import com.monograph.railway.railwayreservationmysql.repository.TrainStatusRepos
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -105,5 +103,65 @@ public class AdminController {
         userService.deleteUser(id);
         return "redirect:/admin/users";
     }
+
+    //add route to the database
+    @GetMapping("/routeForm")
+    public String showFormToAddRoute(Model model){
+        model.addAttribute("route",new Route());
+        return "adminPages/add_route";
+    }
+    @PostMapping("/addRoute")
+    public String addRoute(@ModelAttribute Route route){
+        routeService.saveRoute(route);
+        return "redirect:/admin/admin_all_routes";
+    }
+    @GetMapping("/trainForm")
+    public String showTrainForm(Model model){
+        model.addAttribute("train",new Train());
+        return "adminPages/add_train";
+    }
+    @PostMapping("/addTrain")
+    public String addTrain(@ModelAttribute Train train){
+        trainService.saveTrain(train);
+        return "redirect:/admin/admin_all_trains";
+    }
+    @GetMapping("/scheduleForm")
+    public String showScheduleForm(Model model){
+        List<Train> trains=trainService.getAllTrains();
+        model.addAttribute("trains",trains);
+        List<Route> routes=routeService.getAllRoutes();
+        model.addAttribute("routes",routes);
+        model.addAttribute("trainStatus",new TrainStatus());
+        return "adminPages/add_schedule";
+    }
+
+    @PostMapping("/addSchedule")
+    public String saveSchedule(@ModelAttribute TrainStatus trainStatus,Model model) {
+
+        // Get the selected Buss based on the bussId from the form
+        long trainId = trainStatus.getTrain().getId();
+        Long routeId=trainStatus.getRoute().getId();
+        Train selectedTrain = trainService.getTrainById(trainId);
+        Route selectedRoute =routeService.getRouteById(routeId);
+        boolean scheduleExists = trainStatusService.existsByTrainId(trainId);
+        if (selectedTrain != null && selectedRoute != null && !scheduleExists) {
+            System.out.println("the id is:" + selectedTrain.getId());
+            trainStatus.setTrain(selectedTrain);
+            trainStatusService.saveTrainStatus(trainStatus);
+            return "redirect:/admin/schedule";
+
+        } else {
+            model.addAttribute("trains", trainService.getAllTrains());
+            model.addAttribute("routes", routeService.getAllRoutes());
+            model.addAttribute("trainStatus", trainStatus);
+            System.out.println("error to use already bus");
+            // Schedule with the same buss_id already exists, add an error message
+            model.addAttribute("error", "A schedule for this Train already exists.");
+            return "adminPages/add_schedule";
+        }
+
+    }
+
+
 
 }

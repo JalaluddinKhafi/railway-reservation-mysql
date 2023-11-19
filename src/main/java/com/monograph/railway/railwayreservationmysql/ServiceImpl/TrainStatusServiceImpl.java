@@ -43,6 +43,11 @@ public class TrainStatusServiceImpl implements TrainStatusService {
         }
     }
 
+    @Override
+    public boolean existsByTrainId(Long id) {
+        return trainStatusRepository.existsByTrainId(id);
+    }
+
 //    @Override
 //    public List<Object[]> getTrainDetails() {
 //        return trainStatusRepository.getTrainDetails();

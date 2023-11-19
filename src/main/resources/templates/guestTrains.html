@@ -40,6 +40,7 @@
             <th>Price</th>
             <th>Source</th>
             <th>Destination</th>
+            <th>Departure Date</th>
             <th>Departure Time</th>
         </tr>
         </thead>
@@ -52,6 +53,7 @@
             <td th:text="${schedule.train.price} + ${schedule.train.currencySymbol}"></td>
             <td th:text="${schedule.route.source}"></td>
             <td th:text="${schedule.route.destination}"></td>
+            <td th:text="${schedule.departureDate}"></td>
             <td th:text="${schedule.departureTime}"></td>
         </tr>
         </tbody>

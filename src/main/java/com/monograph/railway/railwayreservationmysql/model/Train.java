@@ -31,7 +31,7 @@ public class Train {
     private String currencySymbol;
 
     @OneToOne(
-            cascade = CascadeType.ALL, orphanRemoval = true,
+            cascade = CascadeType.ALL,
             mappedBy = "train")
     private TrainStatus trainStatus;
 

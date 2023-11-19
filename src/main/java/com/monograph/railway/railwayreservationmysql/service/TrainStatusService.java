@@ -13,5 +13,7 @@ public interface TrainStatusService {
     @Transactional
     void deleteTrainStatus(Long trainId);
    // public List<Object[]> getTrainDetails();
+   boolean existsByTrainId(Long id);
+
 }
 
