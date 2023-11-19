@@ -14,5 +14,7 @@ public interface UserService {
     User findByUsername(String username);
     User findByEmail(String email);
     public int getTotalUserCount();
+    public boolean emailExists(String email);
+    public boolean usernameExists(String username);
 
 }

@@ -56,4 +56,18 @@ public class UserServiceImpl implements UserService {
         int totalUser=userList.size();
         return totalUser;
     }
+    @Override
+    public boolean emailExists(String email) {
+        return userRepository.existsByEmail(email);
+    }
+    @Override
+    public boolean usernameExists(String username){
+    return userRepository.existsByUsername(username);
+    }
+    public void updateUser(User updatedUser) {
+        // Perform any necessary business logic or validation
+
+        // Save the updated user to the database
+        userRepository.save(updatedUser);
+    }
 }

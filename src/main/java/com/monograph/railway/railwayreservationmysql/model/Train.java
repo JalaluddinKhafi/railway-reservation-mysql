@@ -5,6 +5,7 @@ import lombok.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -35,7 +36,10 @@ public class Train {
             mappedBy = "train")
     private TrainStatus trainStatus;
 
-
+    @OneToMany(
+            cascade = CascadeType.ALL,
+            mappedBy = "train")
+    private List<Ticket> ticket;
     // Getters and setters
 }
 

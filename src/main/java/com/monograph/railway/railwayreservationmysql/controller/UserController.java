@@ -144,8 +144,7 @@ public class UserController {
 
     @PostMapping("/update-user")
     public String updateUser(@ModelAttribute User updatedUser, HttpSession session) {
-        // Update the user details in the database
-        userService.saveUser(updatedUser);
+
                 // Update the user information in the session
                 session.setAttribute("userId", updatedUser.getId());
                 session.setAttribute("firstName", updatedUser.getFirstName());
@@ -153,6 +152,8 @@ public class UserController {
                 session.setAttribute("email", updatedUser.getEmail());
                 session.setAttribute("username", updatedUser.getUsername());
                 // Update other session attributes as needed
+        // Update the user details in the database
+        userService.saveUser(updatedUser);
         return "redirect:/userProfile";
     }
 

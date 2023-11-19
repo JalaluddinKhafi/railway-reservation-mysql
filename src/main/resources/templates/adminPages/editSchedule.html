@@ -9,7 +9,7 @@
 
     <!--    script files for modal form-->
     <title>
-        Add Schedule
+        Update Schedule
     </title>
     <!--     Fonts and icons     -->
     <link rel="stylesheet" type="text/css"
@@ -46,32 +46,33 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class=" card my-4 container-fluid col-md-6 border p-3">
-                <form th:action="@{/admin/addSchedule}" method="post" th:object="${trainStatus}">
+                <form th:action="@{/admin/addSchedule}" method="post" th:object="${schedule}">
                     <fieldset>
-                        <p class="align-content-center text-bold text-center">Add Schedule</p>
+                        <p class="align-content-center text-bold text-center">Update Schedule</p>
+                        <input type="hidden" name="id" th:value="${schedule.getStatusId()}">
                         <div class="form-group mb-3">
-                                <select class="form-select" th:field="*{route.id}">
-                                    <option value="" disabled selected>Select Route</option>
-                                    <option th:each="r : ${routes}" th:value="${r.id}"
-                                            th:text="${r.id + ' - ' + r.source +' - '+ r.destination}"></option>
-                                </select>
+                            <select class="form-select" th:field="*{route.id}">
+                                <option value="" disabled selected>Select Route</option>
+                                <option th:each="r : ${routes}" th:value="${r.id}"
+                                        th:text="${r.id + ' - ' + r.source +' - '+ r.destination}"></option>
+                            </select>
                         </div>
                         <div class="form-group mb-3">
-                                <select class="form-select" th:field="*{train.id}">
-                                    <option value="" disabled selected>Select Train</option>
-                                    <option th:each="t : ${trains}" th:value="${t.id}"
-                                            th:text="${t.id + ' - ' + t.name}"></option>
-                                </select>
+                            <select class="form-select" th:field="*{train.id}">
+                                <option value="" disabled selected>Select Train</option>
+                                <option th:each="t : ${trains}" th:value="${t.id}"
+                                        th:text="${t.id + ' - ' + t.name}"></option>
+                            </select>
                         </div>
                         <div class="form-group mb-3">
                             <label for="availableSeats">Available Seats</label>
                             <input type="number" class="form-control bg-white border pl-2" id="availableSeats" required
-                                   name="availableSeat">
+                                   name="availableSeat" th:value="${schedule.availableSeat}">
                         </div>
                         <div class="form-group mb-3">
                             <label for="bookedSeats">Booked Seats</label>
                             <input type="number" class="form-control bg-white border pl-2" id="bookedSeats" required
-                                   name="bookedSeat">
+                                   name="bookedSeat" readonly th:value="${schedule.bookedSeat}">
                         </div>
                         <div class="mb-3">
                             <label for="date" class="form-label">Departure Date</label>
