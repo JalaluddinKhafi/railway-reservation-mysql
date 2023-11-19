@@ -34,5 +34,12 @@ public class TrainServiceImpl implements TrainService {
     public void deleteTrain(Long id) {
         trainRepository.deleteById(id);
     }
+
+    @Override
+    public int totalTrainsCount() {
+        List<Train> trainList=getAllTrains();
+        int totalTrains=trainList.size();
+        return totalTrains;
+    }
 }
 

@@ -34,4 +34,21 @@ public class PassengerServiceImpl implements PassengerService {
     public void deletePassenger(Long id) {
         passengerRepository.deleteById(id);
     }
+    @Override
+    public double getTotalPricesOfAllPassengers() {
+        List<Passenger> passengerList = getAllPassengers();
+
+        // Using Java streams to calculate the sum of total prices
+        double totalPrices = passengerList.stream().mapToDouble(Passenger::getTotalPrice).sum();
+
+        return totalPrices;
+    }
+    @Override
+    public int getTotalPassengerCount() {
+        List<Passenger> passengerList = getAllPassengers();
+        // Using the size() method to get the total number of passengers
+        int totalPassengers = passengerList.size();
+
+        return totalPassengers;
+    }
 }

@@ -11,6 +11,7 @@ public interface TrainService {
         Train getTrainById(Long id);
         List<Train> getAllTrains();
         void deleteTrain(Long id);
+        int totalTrainsCount();
 
 
 }

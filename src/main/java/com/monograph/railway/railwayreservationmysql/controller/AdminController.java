@@ -34,7 +34,15 @@ public class AdminController {
 
 
     @GetMapping("/adminHomePage")
-    public String adminHome() {
+    public String adminHome(Model model) {
+    double totalPrice=passengerService.getTotalPricesOfAllPassengers();
+    model.addAttribute("totalPrice",totalPrice);
+    int totalPassengers=passengerService.getTotalPassengerCount();
+    model.addAttribute("totalPassengers",totalPassengers);
+    int totalUser= userService.getTotalUserCount();
+    model.addAttribute("totalUsers",totalUser);
+    int totalTrain= trainService.totalTrainsCount();
+    model.addAttribute("totalTrains",totalTrain);
         return "adminPages/adminHomePage";
     }
 

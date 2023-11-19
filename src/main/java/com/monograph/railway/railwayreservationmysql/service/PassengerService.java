@@ -12,6 +12,8 @@ public interface PassengerService {
     Passenger getPassengerById(Long id);
     List<Passenger> getAllPassengers();
     void deletePassenger(Long id);
+    public double getTotalPricesOfAllPassengers();
+    public int getTotalPassengerCount();
 
 
 
